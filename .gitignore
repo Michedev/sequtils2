@@ -1,0 +1,4 @@
+.vscode
+nimcache
+utils.py
+tests/test_sequtils2
