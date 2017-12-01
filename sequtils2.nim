@@ -72,7 +72,9 @@ proc minBy*[T, V](s: openArray[T], keyF: proc(a:T): V): T =
             min_i = i
     return s[min_i]
 
-proc product*[T](s: openArray[T]) : T = s.reduce do (a,b: T) -> T : a * b
+proc product*[T](s: openArray[T]) : T = 
+    ##Return the product of all elements in s
+    s.reduce do (a,b: T) -> T : a * b
     
 #TODO Add optional starting value param
 proc reduce*[T](s: openArray[T], accumulator: proc(a,b:T): T): T =
@@ -122,7 +124,9 @@ proc sortBy*[T, V](s: openArray[T], keyF: proc(a:T): V): seq[T] =
     for j in 0..<s.len():
         result[j] = s[keysIndexed[j].i]
 
-proc sum*[T](s: openArray[T]) : T = s.reduce do (a,b: T) -> T : a + b
+proc sum*[T](s: openArray[T]) : T = 
+    ##Return the sum of all elements in s
+    s.reduce do (a,b: T) -> T : a + b
         
 proc uniques*[T](s: seq[T], preserve_order = true): seq[T] =
     ##Return s without duplicates
