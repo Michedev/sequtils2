@@ -3,6 +3,7 @@ import algorithm
 import options
 import sets
 import math
+import options
 
 proc `**`*[T, V](s: openArray[T], t: openArray[V]): seq[tuple[a: T, b: V]] =
     ## Return a seq of all possible pairs between s and t
@@ -26,6 +27,21 @@ proc filterWithIndex*[T](s: openArray[T], filterF: proc(el: T, i : int): bool) :
     for i in 0..<s.len():
         if filterF(s[i], i):
             result.add s[i]
+
+proc first*[T](s: openArray[T], predicate: proc(el: T): bool): Option[T] =
+    ## Return the first element of openArray s that match the predicate encapsulated as Option[T].
+    ## If no one element match it the function returns none(T)
+    for el in s:
+        if predicate(el):
+            return some(el)
+    return none(T)
+
+proc firstWithIndex*[T](s: openArray[T], predicate: proc(el: T, i: int): bool): Option[T] =
+    ## Like first function, but predicate function receives in input also the index of the element
+    for i in 0..<s.len():
+        if predicate(s[i], i):
+            return some(s[i])
+    return none(T)
             
 proc forEach*[T](s: openArray[T], action: proc(el: T)) =
     ##Execute action on each element of s
@@ -36,6 +52,23 @@ proc forEachWithIndex*[T](s: openArray[T], action: proc(el: T, i: int)) =
     ##Execute action on each element of s with its index
     for i in 0..<s.len():
         action(s[i], i)
+
+proc last*[T](s: openArray[T], predicate: proc(el: T): bool): Option[T] =
+    ## Return the last element of openArray s that match the predicate encapsulated as Option[T]. 
+    ## If no one element match it the function returns none(T)
+    var lastValue: Option[T] = none(T)
+    for el in s:
+        if predicate(el):
+            lastValue = some(el)
+    return lastValue
+
+proc lastWithIndex*[T](s: openArray[T], filterF: proc(el: T, i: int): bool): Option[T] =
+    ## Like last function, but predicate function receives in input also the index of the element
+    var lastValue: Option[T] = none(T)
+    for i in 0..<s.len():
+        if filterF(s[i], i):
+            lastValue = some(s[i])
+    return lastValue    
 
 proc mapWithIndex*[T, V](s: openArray[T], mappingF: proc(el:T, i: int): V): seq[V] =
     ##Alternative of map function where mappingF receive also in input the index of the element

@@ -1,5 +1,6 @@
 import ../sequtils2
 import unittest
+import options
 
 type Point = ref object
     x: int
@@ -118,3 +119,13 @@ suite "Test sequtils2":
     test "Reverse a sequence":
         let reversed = seq2.reverse()
         check(reversed == @[3,2,1])
+
+    test "Find first multiplier of 4":
+        let first_multiplier_4 = seq1.first(proc(n: int):bool = (n mod 4 == 0))
+        
+        check(first_multiplier_4.is_some() and first_multiplier_4.get() == 4)
+
+    test "Find last multiplier of 4":
+        let last_multiplier_4 = seq1.last(proc(n: int):bool = (n mod 4 == 0))
+        check(last_multiplier_4.is_some() and last_multiplier_4.get() == 76)
+    

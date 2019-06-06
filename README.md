@@ -5,8 +5,12 @@ nim package that provide additional functions for sequences
 - Cartesian product (**)
 - count
 - filterWithIndex
+- first
+- firstWithIndex
 - forEach
 - forEachIndexed
+- last
+- lastWithIndex
 - mapWithIndex
 - maxBy
 - minBy
