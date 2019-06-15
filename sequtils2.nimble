@@ -1,6 +1,6 @@
 # Package
 
-version       = "1.0.0"
+version       = "1.0.1"
 author        = "Michele De Vita"
 description   = "Additional methods for sequences that are not present in sequtils"
 license       = "MIT"
