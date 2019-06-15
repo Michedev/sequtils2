@@ -2,7 +2,7 @@
 nim package that provide additional functions for sequences
 
 #### Function provided by sequtils2:
-- Cartesian product (**)
+- Cartesian product (** operator)
 - count
 - filterWithIndex
 - first
