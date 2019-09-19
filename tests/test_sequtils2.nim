@@ -1,6 +1,7 @@
 import ../sequtils2
 import unittest
 import options
+import sequtils
 
 type Point = ref object
     x: int
@@ -134,8 +135,21 @@ suite "Test sequtils2":
         check(summed != @[7, 7, 9])
         check(summed == @[5, 7, 9])
 
+    test "Element-wise difference":
+        let summed = seq2 - seq3
+        check(summed != @[1,1,1])
+        check(summed == @[-3, -3, -3])
+
     test "Element-wise product":
         let prod = seq2 * seq3
         check(prod != @[10, 10, 18])
         check(prod == @[4, 10, 18])
+
+    test "Element-wise division":
+        let quoz = seq2.mapIt(it.float) / seq3.mapIt(it.float)
+        check(quoz != @[0.0,0,0])
+        check(quoz == @[0.25, 2.0/5.0, 0.5])
+        let quoz_int: seq[int] = seq2 / seq3
+        check(quoz_int == @[0, 0, 0])
+    
     

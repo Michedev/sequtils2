@@ -11,11 +11,23 @@ proc `+`*[T](a,b: seq[T]): seq[T] =
     for i in 0..<a.len:
         result[i] = a[i] + b[i]
 
+proc `-`*[T](a,b: seq[T]): seq[T] =
+    assert a.len == b.len, "input sequences have differents lenghts"
+    result = new_seq[T](a.len)
+    for i in 0..<a.len:
+        result[i] = a[i] - b[i]
+
 proc `*`*[T](a,b: seq[T]): seq[T] =
     assert a.len == b.len, "input sequences have differents lenghts"
     result = new_seq[T](a.len)
     for i in 0..<a.len:
         result[i] = a[i] * b[i]
+
+proc `/`*[T](a,b: seq[T]): seq[T] =
+    assert a.len == b.len, "input sequences have differents lenghts"
+    result = new_seq[T](a.len)
+    for i in 0..<a.len:
+        result[i] = (a[i] / b[i]).T
 
 proc `**`*[T, V](s: openArray[T], t: openArray[V]): seq[tuple[a: T, b: V]] =
     ## Return a seq of all possible pairs between s and t
