@@ -2,6 +2,8 @@
 nim package that provide additional functions for sequences
 
 #### Function provided by sequtils2:
+- Element-wise sum (+ operator)
+- Element-wise product (* operator)
 - Cartesian product (** operator)
 - count
 - filterWithIndex

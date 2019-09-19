@@ -128,4 +128,14 @@ suite "Test sequtils2":
     test "Find last multiplier of 4":
         let last_multiplier_4 = seq1.last(proc(n: int):bool = (n mod 4 == 0))
         check(last_multiplier_4.is_some() and last_multiplier_4.get() == 76)
+
+    test "Element-wise sum":
+        let summed = seq2 + seq3
+        check(summed != @[7, 7, 9])
+        check(summed == @[5, 7, 9])
+
+    test "Element-wise product":
+        let prod = seq2 * seq3
+        check(prod != @[10, 10, 18])
+        check(prod == @[4, 10, 18])
     
